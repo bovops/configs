@@ -65,7 +65,7 @@ find $WEEKDIR -type d -mtime +30 -print0 | xargs -0 rm -rf
 find $MONTHDIR -type d -mtime +60 -print0 | xargs -0 rm -rf
 echo "[++--------][`date +%F--%H-%M`] Generate a database backup..." | tee -a $LOGS
 #MySQL dump
-echo mysqldump --user=$USER --host=$HOST --password=$PASSWD -R -f --default-character-set=$CHARSET $DBNAME | gzip -c > $DATADIR/$PREFIX/$DBFILENAME-`date +%F--%H-%M`.sql.gz
+mysqldump --user=$USER --host=$HOST --password=$PASSWD -R -f --default-character-set=$CHARSET $DBNAME | gzip -c > $DATADIR/$PREFIX/$DBFILENAME-`date +%F--%H-%M`.sql.gz
 if [[ $? -gt 0 ]];then
 echo "[++--------][`date +%F--%H-%M`] Aborted. Generate database backup failed." | tee -a $LOGS
 exit 1
@@ -74,7 +74,7 @@ echo "[++++------][`date +%F--%H-%M`] Backup database [$DBNAME] - successfull." 
 echo "[++++++----][`date +%F--%H-%M`] Copy the source code project [$PROJNAME]..." | tee -a $LOGS
 #Src dump
 
-echo tar -g $TARSPARSEFILE -czpf $DATADIR/$PREFIX/$ARFILENAME-`date +%F--%H-%M`_$BACKUP_TYPE.tar.gz $SRCFILES $SRCFILES2 $SRCFILES3 $SRCFILES4 2> /dev/null
+tar -g $TARSPARSEFILE -czpf $DATADIR/$PREFIX/$ARFILENAME-`date +%F--%H-%M`_$BACKUP_TYPE.tar.gz $SRCFILES $SRCFILES2 $SRCFILES3 2> /dev/null
 if [[ $? -gt 0 ]];then
 echo "[++++++----][`date +%F--%H-%M`] Aborted. Copying the source code failed." | tee -a $LOGS
 exit 1
