@@ -35,7 +35,7 @@ if [[ $PREFIX == $date_month ]]
 then
     rm -f $TARSPARSEDIR/*
 fi
-LOGS="$DATADIR/$PREFIX/log.txt"
+
 
 mkdir -p $TARSPARSEDIR 2> /dev/null
 
@@ -54,6 +54,7 @@ else
 fi
 
 mkdir -p $DATADIR/$PREFIX 2> /dev/null
+LOGS="$DATADIR/$PREFIX/log.txt"
 
 #start backup
 
