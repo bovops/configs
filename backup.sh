@@ -33,13 +33,12 @@ fi
 
 if [[ $PREFIX == $date_month ]]
 then
-    DATADIR=$MONTHDIR
     rm -f $TARSPARSEDIR/*
 fi
 LOGS="$DATADIR/$PREFIX/log.txt"
 
 mkdir -p $TARSPARSEDIR 2> /dev/null
-mkdir -p $DATADIR/$PREFIX 2> /dev/null
+
 mkdir -p $WEEKDIR 2> /dev/null
 mkdir -p $MONTHDIR 2> /dev/null
 
@@ -51,9 +50,10 @@ then
   BACKUP_TYPE="diff"
 else
   TARSPARSEFILE=$TARSPARSEMONTH
+  DATADIR=$MONTHDIR
 fi
 
-
+mkdir -p $DATADIR/$PREFIX 2> /dev/null
 
 #start backup
 
